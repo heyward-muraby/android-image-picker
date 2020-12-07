@@ -163,6 +163,7 @@ public class DefaultImageFileLoader implements ImageFileLoader {
                     if (folderMap != null) {
                         Folder folder = folderMap.get(bucket);
                         if (folder == null) {
+                            if (bucket == null) bucket = "default_folder_name";
                             folder = new Folder(bucket);
                             folderMap.put(bucket, folder);
                         }
