@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.esafirm.imagepicker.view.SnackBarView
+    <com.papp.imagepicker.view.SnackBarView
         android:id="@+id/ef_snackbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ef_height_snackbar"

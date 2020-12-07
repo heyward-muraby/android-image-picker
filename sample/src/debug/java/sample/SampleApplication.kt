@@ -1,7 +1,7 @@
 package sample
 
 import android.app.Application
-import com.esafirm.sample.BuildConfig
+import com.papp.sample.BuildConfig
 import com.squareup.leakcanary.LeakCanary
 
 class SampleApplication : Application() {
