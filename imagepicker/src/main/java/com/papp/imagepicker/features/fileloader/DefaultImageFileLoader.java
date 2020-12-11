@@ -3,11 +3,14 @@ package com.papp.imagepicker.features.fileloader;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 
 import androidx.annotation.Nullable;
 
+import com.papp.imagepicker.R;
 import com.papp.imagepicker.features.common.ImageLoaderListener;
+import com.papp.imagepicker.helper.ConfigUtils;
 import com.papp.imagepicker.helper.ImagePickerUtils;
 import com.papp.imagepicker.model.Folder;
 import com.papp.imagepicker.model.Image;
@@ -154,16 +157,20 @@ public class DefaultImageFileLoader implements ImageFileLoader {
 
                     long id = cursor.getLong(cursor.getColumnIndex(projection[0]));
                     String name = cursor.getString(cursor.getColumnIndex(projection[1]));
-                    String bucket = cursor.getString(cursor.getColumnIndex(projection[3]));
+                    String bucket = ConfigUtils.getBucketNameDisplayName(context, cursor,
+                            cursor.getColumnIndex(projection[3]));
+
+                    if (name == null) {
+                        name = context.getString(R.string.ef_default_image_name);
+                    }
 
                     Image image = new Image(id, name, path);
 
                     temp.add(image);
 
-                    if (folderMap != null) {
+                    if (folderMap != null && bucket != null) {
                         Folder folder = folderMap.get(bucket);
                         if (folder == null) {
-                            if (bucket == null) bucket = "default_folder_name";
                             folder = new Folder(bucket);
                             folderMap.put(bucket, folder);
                         }

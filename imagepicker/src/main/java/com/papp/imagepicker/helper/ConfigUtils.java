@@ -1,6 +1,8 @@
 package com.papp.imagepicker.helper;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.os.Build;
 
 import com.papp.imagepicker.R;
 import com.papp.imagepicker.features.ImagePickerConfig;
@@ -51,4 +53,22 @@ public class ConfigUtils {
                 ? context.getString(R.string.ef_done)
                 : doneButtonText;
     }
+
+    public static String getBucketNameDisplayName(Context context, Cursor cursor, int columnIndex) {
+        String bucketDisplayName;
+
+        /*
+         * in Android minor that Q doesn't exist the key: BUCKET_DISPLAY_NAME, so for
+         * android versions minor that Q, it is assigned a default name for the
+         * BUCKET_DISPLAY_NAME.
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            bucketDisplayName = cursor.getString(columnIndex);
+        } else {
+            bucketDisplayName = context.getString(R.string.ef_default_bucket_display_name);
+        }
+
+        return bucketDisplayName;
+    }
+
 }

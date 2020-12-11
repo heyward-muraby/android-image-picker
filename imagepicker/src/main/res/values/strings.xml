@@ -26,5 +26,7 @@
     <string name="ef_gif" translatable="false">GIF</string>
     <string name="ef_content_desc_folder" translatable="false">Folder</string>
     <string name="ef_content_desc_image" translatable="false">Image</string>
+    <string name="ef_default_bucket_display_name" translatable="false">Unknown</string>
+    <string name="ef_default_image_name" translatable="false">Unknown</string>
 
 </resources>
