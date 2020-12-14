@@ -157,8 +157,7 @@ public class DefaultImageFileLoader implements ImageFileLoader {
 
                     long id = cursor.getLong(cursor.getColumnIndex(projection[0]));
                     String name = cursor.getString(cursor.getColumnIndex(projection[1]));
-                    String bucket = ConfigUtils.getBucketNameDisplayName(context, cursor,
-                            cursor.getColumnIndex(projection[3]));
+                    String bucket = cursor.getString(cursor.getColumnIndex(projection[3]));
 
                     if (name == null) {
                         name = context.getString(R.string.ef_default_image_name);
@@ -168,9 +167,11 @@ public class DefaultImageFileLoader implements ImageFileLoader {
 
                     temp.add(image);
 
-                    if (folderMap != null && bucket != null) {
+                    if (folderMap != null) {
                         Folder folder = folderMap.get(bucket);
                         if (folder == null) {
+                            if (bucket == null) bucket = context.getString(R.string.ef_default_bucket_display_name);
+
                             folder = new Folder(bucket);
                             folderMap.put(bucket, folder);
                         }
