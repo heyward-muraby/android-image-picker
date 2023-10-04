@@ -44,6 +44,7 @@ import com.papp.imagepicker.view.SnackBarView;
 
 import java.util.ArrayList;
 import java.util.List;
+//import java.util.jar.Manifest;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
