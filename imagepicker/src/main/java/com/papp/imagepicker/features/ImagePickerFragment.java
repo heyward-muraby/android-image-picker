@@ -274,7 +274,7 @@ public class ImagePickerFragment extends Fragment implements ImagePickerView {
      */
     private void getDataWithPermission() {
         int rc = ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (rc == PackageManager.PERMISSION_GRANTED || Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (rc == PackageManager.PERMISSION_GRANTED || Build.VERSION.SDK_INT >= 33) {
             getData();
         } else {
             requestWriteExternalPermission();
@@ -419,7 +419,7 @@ public class ImagePickerFragment extends Fragment implements ImagePickerView {
      * Request for camera permission
      */
     public void captureImageWithPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Build.VERSION.SDK_INT < 33) {
             final boolean isCameraGranted = ActivityCompat
                     .checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
             final boolean isWriteGranted = ActivityCompat
