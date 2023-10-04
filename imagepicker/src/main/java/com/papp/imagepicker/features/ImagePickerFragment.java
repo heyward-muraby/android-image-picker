@@ -44,6 +44,7 @@ import com.papp.imagepicker.view.SnackBarView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Manifest;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -273,7 +274,7 @@ public class ImagePickerFragment extends Fragment implements ImagePickerView {
      */
     private void getDataWithPermission() {
         int rc = ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (rc == PackageManager.PERMISSION_GRANTED) {
+        if (rc == PackageManager.PERMISSION_GRANTED || Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             getData();
         } else {
             requestWriteExternalPermission();
@@ -418,7 +419,7 @@ public class ImagePickerFragment extends Fragment implements ImagePickerView {
      * Request for camera permission
      */
     public void captureImageWithPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             final boolean isCameraGranted = ActivityCompat
                     .checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
             final boolean isWriteGranted = ActivityCompat
